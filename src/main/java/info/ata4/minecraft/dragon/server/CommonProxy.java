@@ -14,6 +14,7 @@ import info.ata4.minecraft.dragon.server.block.BlockDragonBreedEgg;
 import info.ata4.minecraft.dragon.server.cmd.CommandDragon;
 import info.ata4.minecraft.dragon.server.entity.EntityTameableDragon;
 import info.ata4.minecraft.dragon.server.handler.DragonEggBlockHandler;
+import info.ata4.minecraft.dragon.server.handler.GuiHandler;
 import info.ata4.minecraft.dragon.server.item.ItemDragonBreedEgg;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.server.MinecraftServer;
@@ -23,6 +24,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -46,6 +48,9 @@ public class CommonProxy {
         registerEntities();
 
         MinecraftForge.EVENT_BUS.register(new DragonEggBlockHandler());
+        
+        // Register GUI handler with Forge
+        NetworkRegistry.INSTANCE.registerGuiHandler(DragonMounts.instance, new GuiHandler());
     }
 
     public void onPostInit(FMLPostInitializationEvent event) {

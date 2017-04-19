@@ -27,6 +27,7 @@ public class DragonInteractHelper extends DragonHelper {
     public DragonInteractHelper(EntityTameableDragon dragon) {
         super(dragon);
         
+        actions.add(new DragonInteractGui(dragon));
         actions.add(new DragonInteractEat(dragon));
         actions.add(new DragonInteractTame(dragon));
         actions.add(new DragonInteractSaddle(dragon));
